@@ -66,12 +66,27 @@ class RKE:
 
     
     @bandwidth_decorator
-    def compute_rke_mc_frobenius_norm(self, X):
-        X = torch.tensor(X).cuda()
-        n_data = X.shape[0]
-        kernel_matrix = self.kernel_function(X.unsqueeze(0), X.unsqueeze(1)) ** 2
+    def compute_rke_mc_frobenius_norm(self, X, block_size=1000):
+        """
+        Compute the Frobenius norm of the kernel matrix using blocks to reduce memory usage.
 
-        return (torch.sum(kernel_matrix)/(n_data **2)).cpu().numpy()
+        Args:
+            X: Input features
+            block_size: Size of blocks to process in parallel.
+
+        Returns: Frobenius norm of the kernel matrix
+        """
+        X = torch.tensor(X, dtype=torch.float32).cuda()
+        n_data = X.shape[0]
+        sum_frobenius = 0.0
+        for i in range(0, n_data, block_size):
+            for j in range(0, n_data, block_size):
+                X_block = X[i:i+block_size]
+                Y_block = X[j:j+block_size]
+                kernel_block = self.kernel_function(X_block.unsqueeze(0), Y_block.unsqueeze(1)) ** 2
+                sum_frobenius += torch.sum(kernel_block).item()
+
+        return (sum_frobenius / (n_data ** 2))
     
     @bandwidth_decorator
     def compute_rke_mc(self, X, n_samples=1_000_000):
