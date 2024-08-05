@@ -26,14 +26,16 @@ The following plots show the computation time for RKE scores using both NumPy an
 
 ![Computation Times for RKE_MC](rke_time_plots.png)
 
+
+To better recognize the difference, notice that for an extreme case of 10000 samples with 10 feature dimnesions on the RKE mode count using frobenius norm, the numpy version takes notoriously long time while the parallel version executes under a second.
 ### Offset Comparison
 The table below shows the average offset values between the original NumPy-based RKE implementation and the PyTorch-based implementation, proving the accuracy of the PyTorch implementation. (The error is mainly due to the randomness of the sampling)
 
 | Method                  | Offset |
 |-------------------------|--------|
-| `rke_mc`                | *0.739%*|
-| `rke_mc_frobenius_norm` | *5.53e-12%*|
-| `rrke`                  | *0.005%*|
+| `rke_mc`                | *0.559%*|
+| `rke_mc_frobenius_norm` | *5.579e-11%*|
+| `rrke`                  | *0.001%*|
 
 
 ## Example Code
