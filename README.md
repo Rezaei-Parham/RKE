@@ -1,7 +1,7 @@
-# Renyie Kernel Entropy-PyTorch
+# Renyi Kernel Entropy-PyTorch
 
 ## Overview
-This repository contains an optimized implementation of the Relative Kernel Entropy (RKE) score using PyTorch. The PyTorch implementation leverages GPU acceleration and parallel computing to significantly speed up the computation of RKE scores for large datasets. 
+This repository contains an optimized implementation of the Renyi Kernel Entropy (RKE) score using PyTorch. The PyTorch implementation leverages GPU acceleration and parallel computing to significantly speed up the computation of RKE scores for large datasets. 
 
 The main repository for the paper is <a href='https://github.com/mjalali/renyi-kernel-entropy/tree/main'>here</a>.
 
