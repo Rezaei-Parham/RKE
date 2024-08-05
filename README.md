@@ -61,3 +61,6 @@ kernel = RKE(kernel_bandwidth=[0.2, 0.3, 0.4])
 print(kernel.compute_rke_mc(fake_features))
 print(kernel.compute_rrke(real_features, fake_features))
 ```
+
+## Limitations
+As it is evident, if we have high value for feature dimension and large number of samples, we would face gpu memory issues. It can be solved by better trade-off of doing sequential and parallel operations such as reducing the kernel matrix to parts and performing the parallel operation on each part.
