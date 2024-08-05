@@ -62,5 +62,5 @@ print(kernel.compute_rke_mc(fake_features))
 print(kernel.compute_rrke(real_features, fake_features))
 ```
 
-## Limitations
-As it is evident, if we have high value for feature dimension and large number of samples, we would face gpu memory issues. It can be solved by better trade-off of doing sequential and parallel operations such as reducing the kernel matrix to parts and performing the parallel operation on each part.
+## Block Operations
+As it is evident, if we have high value for feature dimension and large number of samples, we would face gpu memory issues. It is solved by using a value named block_size to do the parallel computations in each block and iterate sequentially on the blocks. Therefore, you can use this trade-off of memory and time. If you have 10_000 samples of 1000 feature dimension, the numpy code would take until eternity but using block_size of 100 on this code, would give the result in around 30 seconds.
