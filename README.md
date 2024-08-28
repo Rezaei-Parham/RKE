@@ -1,5 +1,5 @@
-# Renyi Kernel Entropy - PyTorch
-
+# Renyi Kernel Entropy PyTorch (RKE)
+An Information-Theoretic Evaluation of Generative Models in Learning Multi-modal Distributions
 ## Overview
 This repository contains an optimized implementation of the Renyi Kernel Entropy (RKE) score using PyTorch. The PyTorch implementation leverages GPU acceleration and parallel computing to significantly speed up the computation of RKE scores for large datasets. 
 
